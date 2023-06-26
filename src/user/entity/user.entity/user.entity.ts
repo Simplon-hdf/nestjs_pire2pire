@@ -19,11 +19,11 @@ export class UserEntity {
     @Column({name: "user_adress", type: "varchar", nullable: true})
     adress: string
 
-    @ManyToMany(() => TrainingEntity)
+    @ManyToMany(() => TrainingEntity, (training) => training.id)
     @JoinTable({name: "trainings_followed"})
     trainingsFollowed: TrainingEntity[]
     
-    @ManyToMany(() => CourseEntity)
+    @ManyToMany(() => CourseEntity, (course) => course.id)
     @JoinTable({name: "courses_followed"})
     coursesFollowed: CourseEntity[]
 }

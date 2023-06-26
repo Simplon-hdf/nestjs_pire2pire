@@ -20,15 +20,15 @@ export class CourseEntity {
     @Column({name: "course_duration", type: "integer"})
     duration: number
 
-    @ManyToMany(() => LessonEntity)
+    @ManyToMany(() => LessonEntity, (lesson) => lesson.content)
     @JoinTable({name: "course_lessons"})
     lessons: LessonEntity[]
 
-    @ManyToMany(() => TagCourseEntity)
+    @ManyToMany(() => TagCourseEntity, (tag) => tag.tagName)
     @JoinTable({name: "course_tag"})
     tag: TagCourseEntity[]
 
-    @ManyToMany(() => UserEntity)
+    @ManyToMany(() => UserEntity, (user)  => user.firstName + user.name)
     @JoinTable({name: "course_authors"})
     authors: UserEntity[]
 }

@@ -13,11 +13,11 @@ export class LessonEntity {
     @Column({name: "lesson_content", type: "text"})
     content: string
 
-    @ManyToMany(() => TagLessonEntity)
+    @ManyToMany(() => TagLessonEntity, (tag) => tag.tagName)
     @JoinTable({name: "lesson_tag"})
     tag: TagLessonEntity[]
 
-    @ManyToMany(() => UserEntity)
+    @ManyToMany(() => UserEntity, (user) => user.firstName + user.name)
     @JoinTable({name: "lesson_authors"})
     authors: UserEntity[]
 }
