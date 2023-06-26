@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { CourseEntity } from "src/course/entity/course.entity/course.entity";
+import { TrainingEntity } from "src/training/entity/training.entity/training.entity";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class UserEntity {
@@ -16,4 +18,12 @@ export class UserEntity {
     
     @Column({name: "user_adress", type: "varchar", nullable: true})
     adress: string
+
+    @ManyToMany(() => TrainingEntity, (training) => training.id)
+    @JoinTable({name: "trainings_followed"})
+    trainingsFollowed: TrainingEntity[]
+    
+    @ManyToMany(() => CourseEntity, (course) => course.id)
+    @JoinTable({name: "courses_followed"})
+    coursesFollowed: CourseEntity[]
 }

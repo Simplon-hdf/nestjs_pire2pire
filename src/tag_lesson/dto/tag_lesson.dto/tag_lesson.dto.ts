@@ -1,12 +1,9 @@
 import { IsNumber, IsString } from "class-validator";
 
-export class LessonDto {
+export class TagLessonDto {
     @IsNumber()
     id: number
 
     @IsString()
-    title: string
-
-    @IsString()
-    content: string
+    tagName: string
 }

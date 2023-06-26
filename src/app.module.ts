@@ -9,6 +9,13 @@ import { RoleEntity } from './role/entity/role.entity/role.entity';
 import { TrainingModule } from './training/training.module';
 import { LessonModule } from './lesson/lesson.module';
 import { CourseModule } from './course/course.module';
+import { TagCourseModule } from './tag_course/tag_course.module';
+import { TagLessonModule } from './tag_lesson/tag_lesson.module';
+import { CourseEntity } from './course/entity/course.entity/course.entity';
+import { TrainingEntity } from './training/entity/training.entity/training.entity';
+import { LessonEntity } from './lesson/entity/lesson.entity/lesson.entity';
+import { TagCourseEntity } from './tag_course/entity/tag_course.entity/tag_course.entity';
+import { TagLessonEntity } from './tag_lesson/entity/tag_lesson.entity/tag_lesson.entity';
 
 @Module({
   imports: [
@@ -19,7 +26,7 @@ import { CourseModule } from './course/course.module';
       username: 'postgres',
       password: 'yukionna',
       database: 'p2p_db',
-      entities: [UserEntity, RoleEntity],
+      entities: [UserEntity, RoleEntity, CourseEntity, TrainingEntity, LessonEntity, TagCourseEntity, TagLessonEntity],
       synchronize: true,
     }),
     UserModule,
@@ -27,6 +34,8 @@ import { CourseModule } from './course/course.module';
     TrainingModule,
     LessonModule,
     CourseModule,
+    TagCourseModule,
+    TagLessonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,7 +15,7 @@ export class RoleEntity {
     @Column({name: "is_former", type: "boolean"})
     isFormer: boolean
 
-    @OneToOne(type => UserEntity)
+    @OneToOne(type => UserEntity, (user) => user.id)
     @JoinColumn({name: "user_id"})
         role: UserEntity;
 }
