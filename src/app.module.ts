@@ -9,6 +9,8 @@ import { RoleEntity } from './role/entity/role.entity/role.entity';
 import { TrainingModule } from './training/training.module';
 import { LessonModule } from './lesson/lesson.module';
 import { CourseModule } from './course/course.module';
+import { TagCourseModule } from './tag_course/tag_course.module';
+import { TagLessonModule } from './tag_lesson/tag_lesson.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { CourseModule } from './course/course.module';
     TrainingModule,
     LessonModule,
     CourseModule,
+    TagCourseModule,
+    TagLessonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
