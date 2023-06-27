@@ -2,7 +2,7 @@ import { IsBoolean, IsNumber } from "class-validator";
 
 export class RoleDto {
     @IsNumber()
-    id: number
+    id?: number
     
     @IsBoolean()
     isAdmin: boolean
@@ -12,4 +12,7 @@ export class RoleDto {
     
     @IsBoolean()
     isFormer: boolean
+
+    @IsNumber()
+    userId: number
 }

@@ -15,7 +15,10 @@ export class RoleEntity {
     @Column({name: "is_former", type: "boolean"})
     isFormer: boolean
 
-    @OneToOne(type => UserEntity, (user) => user.id)
+    @Column({name: "user_id", type: "integer"})
+    userId: number
+
+    @OneToOne(() => UserEntity, user => user.id, {onDelete: 'CASCADE'})
     @JoinColumn({name: "user_id"})
-        role: UserEntity;
+        user: UserEntity;
 }

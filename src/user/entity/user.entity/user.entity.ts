@@ -1,6 +1,7 @@
 import { CourseEntity } from "src/course/entity/course.entity/course.entity";
+import { RoleEntity } from "src/role/entity/role.entity/role.entity";
 import { TrainingEntity } from "src/training/entity/training.entity/training.entity";
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class UserEntity {
@@ -18,6 +19,9 @@ export class UserEntity {
     
     @Column({name: "user_adress", type: "varchar", nullable: true})
     adress: string
+
+    @OneToOne(() => RoleEntity, role => role.user)
+    role: RoleEntity
 
     @ManyToMany(() => TrainingEntity, (training) => training.id)
     @JoinTable({name: "trainings_followed"})

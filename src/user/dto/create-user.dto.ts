@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsBoolean, IsNumber, IsString } from "class-validator";
 
 export class UserDto {
     @IsNumber()
@@ -15,4 +15,13 @@ export class UserDto {
 
     @IsString()
     birthDate?: string;
+
+    @IsBoolean()
+    isAdmin?: boolean
+
+    @IsBoolean()
+    isStudent?: boolean
+
+    @IsBoolean()
+    isFormer?: boolean
 }

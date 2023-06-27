@@ -2,7 +2,7 @@ import { CourseEntity } from "src/course/entity/course.entity/course.entity";
 import { UserEntity } from "src/user/entity/user.entity/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity("trainings")
 export class TrainingEntity {
     @PrimaryGeneratedColumn({name: "training_id"})
     id: number
