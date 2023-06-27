@@ -14,4 +14,12 @@ export class RoleService {
     create(role: RoleDto): Promise<RoleDto> {
         return this.roleRepository.save(role)
     }
+
+    findAll(): Promise<RoleDto[]> {
+        return this.roleRepository.find()
+    }
+
+    findOne(id: string): Promise<RoleDto> {
+        return this.roleRepository.findOne({where: {id: +id}})
+    }
 }

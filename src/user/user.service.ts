@@ -3,20 +3,32 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entity/user.entity/user.entity';
 import { Repository } from 'typeorm';
 import { UserDto } from './dto/create-user.dto';
+import { RoleEntity } from 'src/role/entity/role.entity/role.entity';
+import { RoleDto } from 'src/role/dto/role.dto/role.dto';
+import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(UserEntity)
-        private userRepository: Repository<UserEntity>
+        private userRepository: Repository<UserEntity>,
+
+        @InjectRepository(RoleEntity)
+        private roleRepository: Repository<RoleEntity>
     ){}
 
-    create(user: UserDto): Promise<UserDto> {
-        return this.userRepository.save(user);
+    async create(user: UserDto): Promise<UserDto> {
+        const newUser = this.userRepository.create(user)
+        await this.userRepository.save(newUser)
+        const role: RoleDto = {"isAdmin": user.isAdmin, "isStudent": user.isStudent, "isFormer": user.isFormer, "userId": newUser.id}
+        this.roleRepository.save(role)
+        return user
     }
 
     findAll(): Promise<UserDto[]> {
-        return this.userRepository.find()
+        return this.userRepository.find({
+            relations: ["role"]
+        })
     }
 
     findOne(id: string): Promise<UserDto> {
