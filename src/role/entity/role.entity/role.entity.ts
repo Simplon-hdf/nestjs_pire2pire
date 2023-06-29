@@ -18,7 +18,7 @@ export class RoleEntity {
     @Column({name: "user_id", type: "integer"})
     userId: number
 
-    @OneToOne(() => UserEntity, user => user.id, {onDelete: 'CASCADE'})
+    @OneToOne(() => UserEntity, user => user.id, {cascade: true})
     @JoinColumn({name: "user_id"})
         user: UserEntity;
 }

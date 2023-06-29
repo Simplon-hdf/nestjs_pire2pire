@@ -23,11 +23,9 @@ export class UserEntity {
     @OneToOne(() => RoleEntity, role => role.user)
     role: RoleEntity
 
-    @ManyToMany(() => TrainingEntity, (training) => training.id)
-    @JoinTable({name: "trainings_followed"})
+    @ManyToMany(() => TrainingEntity, (training) => training.authors)
     trainingsFollowed: TrainingEntity[]
     
-    @ManyToMany(() => CourseEntity, (course) => course.id)
-    @JoinTable({name: "courses_followed"})
+    @ManyToMany(() => CourseEntity, (course) => course.authors)
     coursesFollowed: CourseEntity[]
 }

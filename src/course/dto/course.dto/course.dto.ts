@@ -2,17 +2,17 @@ import { IsNumber, IsString } from "class-validator";
 
 export class CourseDto {
     @IsNumber()
-    id: number
+    id?: number
 
     @IsString()
-    title: string
+    courseTitle: string
 
     @IsString()
-    number: string
+    courseNumber: string
 
     @IsString()
-    objective: string
+    courseObjective: string
 
     @IsNumber()
-    duration: number
+    courseDuration: number
 }

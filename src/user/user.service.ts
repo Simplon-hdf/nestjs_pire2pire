@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { UserDto } from './dto/create-user.dto';
 import { RoleEntity } from 'src/role/entity/role.entity/role.entity';
 import { RoleDto } from 'src/role/dto/role.dto/role.dto';
-import { JoinAttribute } from 'typeorm/query-builder/JoinAttribute';
 
 @Injectable()
 export class UserService {
