@@ -2,11 +2,11 @@ import { IsNumber, IsString } from "class-validator";
 
 export class LessonDto {
     @IsNumber()
-    id: number
+    id?: number
 
     @IsString()
-    title: string
+    lessonTitle: string
 
     @IsString()
-    content: string
+    lessonContent: string
 }

@@ -10,29 +10,53 @@ export class CourseEntity {
     id: number
 
     @Column({name: "course_title", type: "varchar"})
-    title: string
+    courseTitle: string
 
     @Column({name: "course_number", type: "varchar"})
-    number: string
+    courseNumber: string
 
     @Column({name: "course_objective", type: "varchar"})
-    objective: string
+    courseObjective: string
 
     @Column({name: "course_duration", type: "integer"})
-    duration: number
+    courseDuration: number
 
     @ManyToMany(() => TrainingEntity, (training) => training.courses)
     training: TrainingEntity[]
 
     @ManyToMany(() => LessonEntity, (lesson) => lesson.id)
-    @JoinTable({name: "course_lessons"})
+    @JoinTable({name: "course_lessons",
+    joinColumn: {
+        name: "course_id",
+        referencedColumnName: "id"
+    },
+    inverseJoinColumn: {
+        name: "lesson_id",
+        referencedColumnName: "id"
+    }})
     lessons: LessonEntity[]
 
     @ManyToMany(() => TagCourseEntity, (tag) => tag.id)
-    @JoinTable({name: "course_tag"})
+    @JoinTable({name: "course_tag",
+    joinColumn: {
+        name: "course_id",
+        referencedColumnName: "id"
+    },
+    inverseJoinColumn: {
+        name: "tag_id",
+        referencedColumnName: "id"
+    }})
     tag: TagCourseEntity[]
 
     @ManyToMany(() => UserEntity, (author)  => author.id)
-    @JoinTable({name: "course_authors"})
+    @JoinTable({name: "course_authors",
+    joinColumn: {
+        name: "course_id",
+        referencedColumnName: "id"
+    },
+    inverseJoinColumn: {
+        name: "user_id",
+        referencedColumnName: "id"
+    }})
     authors: UserEntity[]
 }

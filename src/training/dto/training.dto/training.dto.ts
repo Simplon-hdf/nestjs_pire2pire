@@ -6,4 +6,25 @@ export class TrainingDto {
 
     @IsString()
     title: string
+
+    @IsNumber()
+    userId: number
+
+    @IsString()
+    courseTitle: string
+
+    @IsString()
+    courseNumber: string
+
+    @IsString()
+    courseObjective: string
+
+    @IsNumber()
+    courseDuration: number
+
+    @IsString()
+    lessonTitle: string
+
+    @IsString()
+    lessonContent: string
 }
