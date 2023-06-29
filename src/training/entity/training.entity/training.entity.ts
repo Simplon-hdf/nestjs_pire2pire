@@ -10,11 +10,11 @@ export class TrainingEntity {
     @Column({name: "training_title", type: "varchar"})
     title: string
     
-    @ManyToMany(() => UserEntity, (user) => user.firstName + user.name)
+    @ManyToMany(() => UserEntity, (author) => author.id)
     @JoinTable({name: "training_authors"})
     authors: UserEntity[]
 
     @ManyToMany(() => CourseEntity, (course) => course.id)
-    @JoinTable({name: "training_courses_id"})
+    @JoinTable({name: "training_courses"})
     courses: CourseEntity[]
 }

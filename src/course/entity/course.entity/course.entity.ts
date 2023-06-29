@@ -1,5 +1,6 @@
 import { LessonEntity } from "src/lesson/entity/lesson.entity/lesson.entity";
 import { TagCourseEntity } from "src/tag_course/entity/tag_course.entity/tag_course.entity";
+import { TrainingEntity } from "src/training/entity/training.entity/training.entity";
 import { UserEntity } from "src/user/entity/user.entity/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -20,15 +21,18 @@ export class CourseEntity {
     @Column({name: "course_duration", type: "integer"})
     duration: number
 
-    @ManyToMany(() => LessonEntity, (lesson) => lesson.content)
+    @ManyToMany(() => TrainingEntity, (training) => training.courses)
+    training: TrainingEntity[]
+
+    @ManyToMany(() => LessonEntity, (lesson) => lesson.id)
     @JoinTable({name: "course_lessons"})
     lessons: LessonEntity[]
 
-    @ManyToMany(() => TagCourseEntity, (tag) => tag.tagName)
+    @ManyToMany(() => TagCourseEntity, (tag) => tag.id)
     @JoinTable({name: "course_tag"})
     tag: TagCourseEntity[]
 
-    @ManyToMany(() => UserEntity, (user)  => user.firstName + user.name)
+    @ManyToMany(() => UserEntity, (author)  => author.id)
     @JoinTable({name: "course_authors"})
     authors: UserEntity[]
 }
